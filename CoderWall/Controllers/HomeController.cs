@@ -10,14 +10,15 @@ namespace CoderWall.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Welcome to ASP.NET MVC!";
-
             return View();
         }
 
-        public ActionResult About()
+        [HttpPost]
+        public ActionResult Index(FormCollection form)
         {
-            return View();
+            var username = form["username"];
+            return RedirectToAction("User", "CoderWall", new {username});
         }
+
     }
 }

@@ -2,12 +2,17 @@
     ViewBag.Title = "Home Page";
 }
 
-<h2>@ViewBag.Message</h2>
+<h2>Please enter a CoderBits Username</h2>
 <p>
-    To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
+    @using(Html.BeginForm()){
+        @Html.TextBox("username")
+        <div>
+            <input type="submit"/>
+        </div>
+    }
 </p>
 
 <p>
-    new stuff
+    
 
 </p>
