@@ -1,0 +1,31 @@
+﻿@model CoderWall.Models.CoderbitsModel
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <h1>@Model.UserName</h1>
+        <h2>@Model.Title</h2>
+
+        <div>
+            <h2>Badges</h2>
+
+            @foreach (var badge in @Model.Badges.Where(badges=>badges.IsEarned).OrderBy(b=>b.Id))
+            {
+                <h4>@badge.Name</h4>
+                <div>
+                    <img src="@badge.ImageLink" />
+                </div>
+                <p>
+                    @badge.Description
+                </p>
+            }
+        </div>
+    </div>
+</body>
+</html>
