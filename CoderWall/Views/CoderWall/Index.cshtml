@@ -15,15 +15,19 @@
         <div>
             <h2>Badges</h2>
 
-            @foreach (var badge in @Model.Badges.Where(badges=>badges.IsEarned).OrderBy(b=>b.Id))
+            @{
+            var earnedBadges = Model.Badges.Where(badges => badges.IsEarned).ToList();
+            var badgeNames = earnedBadges.Select(b => b.Name).Distinct();
+            }
+            @foreach (var badgeName in badgeNames.OrderBy(b => b))
             {
-                <h4>@badge.Name</h4>
+                <h4>@badgeName</h4>
                 <div>
-                    <img src="@badge.ImageLink" />
+                @foreach (var badge in earnedBadges.Where(b => b.Name == badgeName).OrderBy(b => b.Id))
+                {                    
+                    <img src="@badge.ImageLink" title="@badge.Description" />
+                }
                 </div>
-                <p>
-                    @badge.Description
-                </p>
             }
         </div>
     </div>
